@@ -2,13 +2,17 @@ ND4J: Scientific Computing on the JVM
 ===========================================
 
 [![Join the chat at https://gitter.im/deeplearning4j/deeplearning4j](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/deeplearning4j/deeplearning4j?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](https://travis-ci.org/deeplearning4j/nd4j.svg?branch=master)](https://travis-ci.org/deeplearning4j/nd4j)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.nd4j/nd4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.nd4j/nd4j)
+[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/org.nd4j/nd4j/badge.svg)](http://nd4j.org/doc)
 
 ND4J is an Apache2 Licensed open-sourced scientific computing library for the JVM. It is meant to be used in production environments
 rather than as a research tool, which means routines are designed to run fast with minimum RAM requirements.
 
-Current latest version in maven central is `0.4-rc0`.
+Please search for the latest version on search.maven.org.
+
+Or use the versions displayed in:
+https://github.com/deeplearning4j/dl4j-0.4-examples/blob/master/pom.xml
+
 
 ---
 ## Main Features
@@ -19,26 +23,32 @@ Current latest version in maven central is `0.4-rc0`.
 
 Specifics
 
-- Supports GPUs via CUDA and Native via Jblas and Netlib Blas.
+- Supports GPUs via with the CUDA backend nd4j-cuda-7.5 and Native via nd4j-native.
 - All of this is wrapped in a unifying interface.
 - The API mimics the semantics of Numpy, Matlab and scikit-learn.
 
 ---
 ## Modules
-Several of these modules are different backend options for ND4J (including GPUs with JCublas).
+Several of these modules are different backend options for ND4J (including GPUs).
 
 - api = core
 - instrumentation
-- java = java backend
-- jblas = jblas backend
-- jcublas-parent = jcublas backend (GPUs)
 - jdbc = Java Database Connectivity
 - jocl-parent = Java bindings for OpenCL
-- netlib-blas = netlib blas backend
 - scala-api = API for Scala users
 - scala-notebook = Integration with Scala Notebook
 
 ---
+
+## Building Specific Modules
+
+It is possible to build the project without the native bindings. This can be done
+by specic targeting of the project to build.
+
+```
+mvn clean package test -pl :nd4j-api
+```
+
 ## Documentation
 
 Documentation is available at [nd4j.org](http://nd4j.org/). Access the [JavaDocs](http://nd4j.org/doc/) for more detail.
@@ -64,20 +74,20 @@ Clone the repository:
 Compile the project:
 
     $ cd nd4j
-    $ mvn clean install -DskipTests -Dmaven.javadoc.skip=true
+    $ mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true
 
 Add the local compiled file dependency (choose the module for your backend) to your pom.xml file:
 
     <dependency>
         <groupId>org.nd4j</groupId>
-        <artifactId>nd4j-jblas</artifactId>
-        <version>0.4-rc0</version>
+        <artifactId>nd4j-native</artifactId>
+        <version>${nd4j.version}</version>
     </dependency>
 
 #### Yum Install / Load RPM (Fedora or CentOS)
 Create a yum repo and run yum install to load the Red Hat Package Management (RPM) files. First create the repo file to setup the configuration locally.
 
-    $ sudo vi /etc/yum.repos.d/dl4j.repo 
+    $ sudo vi /etc/yum.repos.d/dl4j.repo
 
 Add the following to the dl4j.repo file:
 
@@ -96,7 +106,7 @@ Then run the following command on the dl4j repo packages to install them on your
     $ sudo yum install [package name] -y
     $ sudo yum install nd4j-cli -y # for example
 
-Note, be sure to install the nd4j modules you need first, especially the backend and then install Canova and dl4j.
+Note, be sure to install the nd4j modules you need first, especially the backend and then install DataVec & dl4j.
 
 ---
 ## Tests
@@ -105,15 +115,12 @@ Run the following command to execute all tests at once.
 
     mvn test
 
-Or, run the following command to execute TestSuite with only specified backend e.g. jcublas on GPU.
+Or, run the following command to execute TestSuite with only specified backend e.g. nd4j-cuda-7.5 on GPU.
 
     mvn test -pl nd4j-XXX
 
-- nd4j-java
-- nd4j-jblas
-- nd4j-jcublas-parent/nd4j-jcublas-X.X
-- nd4j-netlib-blas
-- nd4j-x86
+- nd4j-cuda-7.5
+- nd4j-native
 
 Or, run the following command to execute only specified tests in TestSuite with only specified backend.
 
@@ -126,4 +133,4 @@ Or, run the following command to execute only specified tests in TestSuite with 
 2. If you feel uncomfortable or uncertain about an issue or your changes, feel free to contact us on Gitter using the link above.
 3. Fork [the repository](https://github.com/deeplearning4j/nd4j.git) on GitHub to start making your changes to the **master** branch (or branch off of it).
 4. Write a test, which shows that the bug was fixed or that the feature works as expected.
-5. Send a pull request, and bug us on Gitter until it gets merged and published. 
+5. Send a pull request, and bug us on Gitter until it gets merged and published.

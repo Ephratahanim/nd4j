@@ -3,31 +3,16 @@
     <parent>
         <artifactId>nd4j-serde</artifactId>
         <groupId>org.nd4j</groupId>
-        <version> 0.4-rc3.8-SNAPSHOT</version>
+        <version>0.7.3-SNAPSHOT</version>
     </parent>
-    <properties>
-        <jackson.version>2.5.1</jackson.version>
-    </properties>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>nd4j-jackson</artifactId>
-  <version> 0.4-rc3.8-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-api</artifactId>
+            <artifactId>nd4j-base64</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-x86</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -35,10 +20,17 @@
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-api</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ND4J Jackson Shaded Dependency-->
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>jackson</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

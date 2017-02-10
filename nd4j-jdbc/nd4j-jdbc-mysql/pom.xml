@@ -25,18 +25,12 @@
     <parent>
         <groupId>org.nd4j</groupId>
         <artifactId>nd4j-jdbc</artifactId>
-        <version> 0.4-rc3.8-SNAPSHOT</version>
+        <version>0.7.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>nd4j-jdbc-mysql</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
-            <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-x86</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -50,7 +44,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
